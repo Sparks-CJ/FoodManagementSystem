@@ -1,0 +1,39 @@
+mern-food-app/
+├── client/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── .env.example
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── api.js
+│       ├── context/
+│       │   └── AuthContext.jsx
+│       ├── pages/
+│       │   ├── Login.jsx
+│       │   ├── Register.jsx
+│       │   └── Dashboard.jsx
+│       └── components/
+│           ├── FoodForm.jsx
+│           └── FoodList.jsx
+│
+├── server/
+│   ├── package.json
+│   ├── server.js
+│   ├── .env.example
+│   └── src/
+│       ├── app.js
+│       ├── controllers/
+│       │   ├── authController.js
+│       │   └── foodController.js
+│       ├── models/
+│       │   ├── User.js
+│       │   └── FoodItem.js
+│       ├── routes/
+│       │   ├── auth.js
+│       │   └── food.js
+│       └── middleware/
+│           └── auth.js
+│
+└── README.md

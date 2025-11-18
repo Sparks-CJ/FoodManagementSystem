@@ -53,3 +53,33 @@ export async function deleteFood(req, res, next){
     res.json({ message: 'Deleted' });
   } catch (err) { next(err); }
 }
+// Returns items for the authenticated user that expire within `days` (default 7)
+export async function expiringSoon(req, res, next) {
+  try {
+    const userId = req.user.id;
+    const days = Number(req.query.days) || 7;
+    const now = new Date();
+    const soon = new Date();
+    soon.setDate(now.getDate() + days);
+
+    const items = await FoodItem.find({
+      user: userId,
+      expiryDate: { $exists: true, $ne: null, $gte: now, $lte: soon }
+    }).sort({ expiryDate: 1 });
+
+    res.json(items);
+  } catch (err) { next(err); }
+}
+
+// Mark/unmark item as "suggested for donation" (toggle)
+export async function toggleSuggestDonation(req, res, next) {
+  try {
+    const userId = req.user.id;
+    const id = req.params.id;
+    const item = await FoodItem.findOne({ _id: id, user: userId });
+    if (!item) return res.status(404).json({ error: 'Not found' });
+    item.donate = !!req.body.donate; // expects { donate: true/false }
+    await item.save();
+    res.json(item);
+  } catch (err) { next(err); }
+}

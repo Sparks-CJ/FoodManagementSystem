@@ -88,3 +88,6 @@ Build Command: npm run build
 Publish Directory: dist
 
 Set VITE_API_URL to the backend Render URL.
+
+
+Deployment URL:  https://foodmanagementsystem-xheo.onrender.com
